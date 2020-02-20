@@ -76,9 +76,10 @@
         }
 
         .list_characters{
-            padding-left: 0.7rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            justify-items: center;
+
             & .card_character{
                 margin-top: 1rem;
                 position: relative;
