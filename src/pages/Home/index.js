@@ -5,32 +5,42 @@ import HeroCard from "../../components/HeroCard/index";
 
 const Home = () => {
   const [marvel, setMarvel] = useState([]);
-  const [specific, setSpecific] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //test
+  const [query, setQuery] = useState("Hulk");
 
   useEffect(() => {
     const fetchData = async () => {
       const req = await fetch(
-        "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
+        `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f`
       );
-      const req1 = await fetch(
-        "https://gateway.marvel.com/v1/public/characters?name=hulk&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
-      );
+      console.log(query);
+      //     URLWith   "https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
+      //Url No With https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f
+
       const data = await req.json();
-      const data1 = await req1.json();
       setMarvel(data);
-      setSpecific(data1);
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [query]);
+
+  //handlers
+
+  const handleClick = event => {
+    if (event.key === "Enter") {
+      let value = event.target.value;
+      let queryTransformed = value.replace(/ /g, "%20");
+      setQuery(queryTransformed);
+    }
+  };
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
   if (!loading) {
-    console.log(specific);
     const marvelData = marvel.data.results;
     console.log(marvelData);
     return (
@@ -48,6 +58,7 @@ const Home = () => {
                 name="search"
                 id="search"
                 placeholder="Search"
+                onKeyPress={event => handleClick(event)}
               />
             </div>
           </div>
