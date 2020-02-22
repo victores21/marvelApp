@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import logo from "../../img/marvel-logo.png";
 import HeroCard from "../../components/HeroCard/index";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
   const [marvel, setMarvel] = useState([]);
@@ -11,49 +12,50 @@ const Home = () => {
   const [query, setQuery] = useState("");
 
   //handlers
-    const handleKeyUp = event => {
-    
-      let value = event.target.value;
-      let queryTransformed = value.replace(/ /g, "%20");
-      setQuery(queryTransformed);
-    
+  const handleKeyUp = event => {
+    let value = event.target.value;
+    let queryTransformed = value.replace(/ /g, "%20");
+    setQuery(queryTransformed);
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
-      let req = ""
-      if(query === ""){
-         req = await fetch("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f");
-      }else{
-       req = await fetch(
-        `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f`
-      );
+      let req = "";
+      if (query === "") {
+        req = await fetch(
+          "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
+        );
+      } else {
+        req = await fetch(
+          `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f`
+        );
       }
-            const data = await req.json();
-            setMarvel(data);
-            setLoading(false);
+      const data = await req.json();
+      setMarvel(data);
+      setLoading(false);
       //     URLWith   "https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
       //Url No With https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f
     };
     fetchData();
   }, [query]);
 
-
-
-
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Loading loading={loading} />
+      </>
+    );
   }
 
   if (!loading) {
     const marvelData = marvel.data.results;
     console.log(marvelData);
+
     return (
       <>
         <div className="container">
           <div className="navbar">
-            <div className="logo"> 
+            <div className="logo">
               <a href="/">
                 <img src={logo} alt="" />
               </a>
