@@ -11,12 +11,12 @@ const Home = () => {
   const [query, setQuery] = useState("");
 
   //handlers
-    const handleClick = event => {
-    if (event.key === "Enter") {
+    const handleKeyUp = event => {
+    
       let value = event.target.value;
       let queryTransformed = value.replace(/ /g, "%20");
       setQuery(queryTransformed);
-    }
+    
   };
 
 
@@ -53,8 +53,8 @@ const Home = () => {
       <>
         <div className="container">
           <div className="navbar">
-            <div className="logo">
-              <a href="#">
+            <div className="logo"> 
+              <a href="/">
                 <img src={logo} alt="" />
               </a>
             </div>
@@ -64,7 +64,7 @@ const Home = () => {
                 name="search"
                 id="search"
                 placeholder="Search"
-                onKeyPress={event => handleClick(event)}
+                onKeyUp={event => handleKeyUp(event)}
               />
             </div>
           </div>

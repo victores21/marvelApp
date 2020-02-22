@@ -8,7 +8,7 @@ const HeroCard = ({ marvelData, loading }) => {
         {marvelData.map(hero => (
           <>
             <div className="card_character">
-              <a href="#">
+              <a href="/">
                 <img
                   className="img_background"
                   src={hero.thumbnail.path.concat(
