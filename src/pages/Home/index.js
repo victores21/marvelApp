@@ -8,33 +8,39 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   //test
-  const [query, setQuery] = useState("Hulk");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const req = await fetch(
-        `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f`
-      );
-      console.log(query);
-      //     URLWith   "https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
-      //Url No With https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f
-
-      const data = await req.json();
-      setMarvel(data);
-      setLoading(false);
-    };
-    fetchData();
-  }, [query]);
+  const [query, setQuery] = useState("");
 
   //handlers
-
-  const handleClick = event => {
+    const handleClick = event => {
     if (event.key === "Enter") {
       let value = event.target.value;
       let queryTransformed = value.replace(/ /g, "%20");
       setQuery(queryTransformed);
     }
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let req = ""
+      if(query === ""){
+         req = await fetch("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f");
+      }else{
+       req = await fetch(
+        `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f`
+      );
+      }
+            const data = await req.json();
+            setMarvel(data);
+            setLoading(false);
+      //     URLWith   "https://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f"
+      //Url No With https://gateway.marvel.com/v1/public/characters?ts=1&apikey=b56fcef71c17650ee98d4e32aad2416f&hash=82890dfb029d385e40ff1ec55203b80f
+    };
+    fetchData();
+  }, [query]);
+
+
+
 
   if (loading) {
     return <p>Loading...</p>;
