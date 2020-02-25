@@ -1,6 +1,7 @@
 import React from "react";
 import { ClipLoader } from "react-spinners";
 import { css } from "@emotion/core";
+import { Link } from "react-router-dom";
 
 const HeroCard = ({ marvelData, loading }) => {
   const override = css`
@@ -32,7 +33,7 @@ const HeroCard = ({ marvelData, loading }) => {
           marvelData.map(hero => (
             <>
               <div className="card_character">
-                <a href="/">
+                <Link to={`/character/${hero.id}`}>
                   <img
                     className="img_background"
                     src={hero.thumbnail.path.concat(
@@ -40,7 +41,7 @@ const HeroCard = ({ marvelData, loading }) => {
                     )}
                     alt=""
                   />
-                </a>
+                </Link>
                 <div className="text_character">
                   <p>{hero.name}</p>
                 </div>
