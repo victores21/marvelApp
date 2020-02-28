@@ -50,10 +50,11 @@ const Details = () => {
                     "." + characterData.thumbnail.extension
                   )}
                   alt=""
+                  className="animated bounceInLeft"
                 />
               </div>
 
-              <div className="details_character_info">
+              <div className="details_character_info animated bounceInRight">
                 <p id="details_character_title">{characterData.name}</p>
                 {characterData.description === "" ? (
                   <p id="details_character_desc">

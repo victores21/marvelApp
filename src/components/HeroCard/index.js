@@ -32,7 +32,7 @@ const HeroCard = ({ marvelData, loading }) => {
         ) : (
           marvelData.map(hero => (
             <>
-              <div className="card_character">
+              <div className="card_character animated zoomInUp">
                 <Link to={`/character/${hero.id}`}>
                   <img
                     className="img_background"

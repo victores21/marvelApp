@@ -73,8 +73,10 @@ const Home = () => {
             </div>
             {/*--Hero Content--*/}
             <div className="main_container">
-              <p id="main_title">Marvel Characters</p>
-              <p id="main_desc">
+              <p className="animated bounceInLeft" id="main_title">
+                Marvel Characters
+              </p>
+              <p className="animated bounceInRight" id="main_desc">
                 Watch your favorites marvel heroes and villains
               </p>
             </div>
