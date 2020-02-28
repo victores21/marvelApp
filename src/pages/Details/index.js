@@ -109,7 +109,7 @@ const Details = () => {
                 </ul>
               </div>
             </div>
-            <footer>Victor Escalona</footer>
+            <footer>Victor Escalona ©️ 2020</footer>
           </div>
         </div>
       </>
