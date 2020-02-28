@@ -8,7 +8,7 @@ const Home = () => {
   const [marvel, setMarvel] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //test
+  //test.
   const [query, setQuery] = useState("");
 
   //handlers
