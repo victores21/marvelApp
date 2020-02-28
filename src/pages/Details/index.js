@@ -108,6 +108,7 @@ const Details = () => {
                 </ul>
               </div>
             </div>
+            <footer>Victor Escalona</footer>
           </div>
         </div>
       </>

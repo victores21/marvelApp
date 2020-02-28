@@ -86,6 +86,7 @@ const Home = () => {
                 <HeroCard marvelData={marvelData} loading={loading} />
               </div>
             </div>
+            <footer>Victor Escalona</footer>
           </div>
         </div>
       </>
