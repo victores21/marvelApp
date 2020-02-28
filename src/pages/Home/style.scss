@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Condensed";
 }
 .container {
   min-height: 100vh;
@@ -69,6 +69,7 @@
     align-items: center;
     flex-direction: column;
     background-attachment: fixed;
+    background-repeat: round;
 
     & p {
       color: #fff;
@@ -102,6 +103,11 @@
         position: relative;
         height: 180px;
         width: 130px;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: transform 0.2s;
+        }
 
         & .img_background {
           height: 100%;
