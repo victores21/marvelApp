@@ -53,36 +53,38 @@ const Home = () => {
 
     return (
       <>
-        <div className="container">
-          <div className="navbar">
-            <div className="logo">
-              <a href="/">
-                <img src={logo} alt="" />
-              </a>
+        <div className="container-fk">
+          <div className="container">
+            <div className="navbar">
+              <div className="logo">
+                <a href="/">
+                  <img src={logo} alt="" />
+                </a>
+              </div>
+              <div className="search_bar">
+                <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  placeholder="Search"
+                  onKeyUp={event => handleKeyUp(event)}
+                />
+              </div>
             </div>
-            <div className="search_bar">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search"
-                onKeyUp={event => handleKeyUp(event)}
-              />
+            {/*--Hero Content--*/}
+            <div className="main_container">
+              <p id="main_title">Marvel Characters</p>
+              <p id="main_desc">
+                Watch your favorites marvel heroes and villains
+              </p>
             </div>
-          </div>
-          {/*--Hero Content--*/}
-          <div className="main_container">
-            <p id="main_title">Marvel Characters</p>
-            <p id="main_desc">
-              Watch your favorites marvel heroes and villains
-            </p>
-          </div>
-          {/*--Character list-->*/}
-          <div className="character_container">
-            <p id="character_title">Characters</p>
-            <hr />
-            <div className="list_characters">
-              <HeroCard marvelData={marvelData} loading={loading} />
+            {/*--Character list-->*/}
+            <div className="character_container">
+              <p id="character_title">Characters</p>
+              <hr />
+              <div className="list_characters">
+                <HeroCard marvelData={marvelData} loading={loading} />
+              </div>
             </div>
           </div>
         </div>
